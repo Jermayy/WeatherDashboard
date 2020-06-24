@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 auto;
+}
+
+.header {
+    background-color: rgb(43, 43, 43);
+}
+
+.header h1 {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-weight: 700;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.column {
+    float: left;
+}
+
+.searchColumn {
+    width: 25%;
+    border: 2px solid black;
+}
+
+.content {
+    width: 75%;
+    border: 2px solid black;
+}
+
+.currentWeather {
+    border: 2px solid black;
+}
+
+.forecast {
+    border: 2px solid black;
+}
+
+.daily {
+    background-color: blue;
+    width: 40px;
+    height: 60px;
+    border-radius: 20px;
+}
