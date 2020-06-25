@@ -48,7 +48,16 @@
     .daily {
         display: inline-block;
         background-color: blue;
+        color: white;
         border-radius: 20px;
         padding: 100px 80px;
         margin: 10px 20px;
+    }
+    
+    h2 {
+        font-size: 40px;
+    }
+    
+    h3 {
+        font-size: 30px;
     }
