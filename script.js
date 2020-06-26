@@ -21,6 +21,21 @@ function searchWeather() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response)
+        console.log(response);
+        console.log(response.coord.lat);
+        console.log(response.coord.lon);
+
+
+
+        const tempF = (response.main.temp - 273.15) * 1.80 + 32;
+
+        let coordinates = "lat=" + response.coord.lat + "&lon=" + response.coord.lon;
+        console.log(coordinates);
+        return coordinates;
     })
 }
+
+
+// // Date and Forecast
+// https: //api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&
+//     // exclude={part}&appid={YOUR API KEY}
