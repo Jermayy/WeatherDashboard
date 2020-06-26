@@ -36,7 +36,7 @@ function searchCityCoordinates() {
         d.setUTCSeconds(UTC);
         console.log(d);
 
-        currentCity.text(response.name + " " + d);
+        currentCity.text(response.name + " - " + d.toString().slice(3, 15));
 
 
         coordinates = "lat=" + response.coord.lat + "&lon=" + response.coord.lon;
