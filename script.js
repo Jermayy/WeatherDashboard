@@ -6,13 +6,14 @@ const currentHumidity = $("#currentHumidity");
 const currentWind = $("#currentWind");
 const currentUV = $("#currentUV");
 
+let coordinates = "";
 
 searchBtn.on('click', function(event) {
     event.preventDefault();
-    searchWeather();
+    searchCityCoordinates();
 })
 
-function searchWeather() {
+function searchCityCoordinates() {
 
     let searchValue = searchInput.val();
     const apiKey = "724e98b55891110350e3c7d68a2fcece";
@@ -31,29 +32,44 @@ function searchWeather() {
         console.log(response.coord.lon);
 
 
-        const tempF = (response.main.temp - 273.15) * 1.80 + 32;
-        const tempC = (tempF - 32) * (5 / 9);
 
-        console.log(tempF.toFixed(2));
-        console.log(tempC.toFixed(2));
+        coordinates = "lat=" + response.coord.lat + "&lon=" + response.coord.lon;
 
-        const humidity = response.main.humidity;
-        const windSpeed = response.wind.speed;
-        const UV = //need to use One Call API from Open Weather Map API
+        searchWeather(coordinates);
 
-
-            currentTemp.text("Temperature: " + tempC.toFixed(2) + " °C");
-
-
-
-
-        let coordinates = "lat=" + response.coord.lat + "&lon=" + response.coord.lon;
-        console.log(coordinates);
-        return coordinates;
     })
+
 }
 
 
+function searchWeather(x) {
+
+    const apiKey = "724e98b55891110350e3c7d68a2fcece";
+    const queryURL2 = "https:api.openweathermap.org/data/2.5/onecall?" + x + "&appid=" + apiKey;
+
+    $.ajax({
+        url: queryURL2,
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+    })
+}
 // // Date and Forecast
-// https: //api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&
+// https:api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&
 //     // exclude={part}&appid={YOUR API KEY}
+
+
+
+
+// const tempF = (response.main.temp - 273.15) * 1.80 + 32;
+// const tempC = (tempF - 32) * (5 / 9);
+
+// console.log(tempF.toFixed(2));
+// console.log(tempC.toFixed(2));
+
+// const humidity = response.main.humidity;
+// const windSpeed = response.wind.speed;
+// const UV = //need to use One Call API from Open Weather Map API
+
+
+//     currentTemp.text("Temperature: " + tempC.toFixed(2) + " °C");
