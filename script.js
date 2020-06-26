@@ -31,6 +31,12 @@ function searchCityCoordinates() {
         console.log(response.coord.lat);
         console.log(response.coord.lon);
 
+        let UTC = response.dt;
+        let d = new Date(0);
+        d.setUTCSeconds(UTC);
+        console.log(d);
+
+        currentCity.text(response.name + " " + d);
 
 
         coordinates = "lat=" + response.coord.lat + "&lon=" + response.coord.lon;
@@ -52,6 +58,8 @@ function searchWeather(x) {
         method: "GET"
     }).then(function(response) {
         console.log(response);
+
+
     })
 }
 // // Date and Forecast
