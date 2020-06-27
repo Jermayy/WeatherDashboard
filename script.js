@@ -6,11 +6,13 @@ const currentHumidity = $("#currentHumidity");
 const currentWind = $("#currentWind");
 const currentUV = $("#currentUV");
 const forecastDiv = $('.forecast');
+const searchColumn = $('.searchColumn');
 
 let coordinates = "";
 
 searchBtn.on('click', function(event) {
     event.preventDefault();
+    clearForecast();
     searchCityCoordinates();
 })
 
@@ -42,6 +44,7 @@ function searchCityCoordinates() {
 
         coordinates = "lat=" + response.coord.lat + "&lon=" + response.coord.lon;
 
+        searchHistory(response.name);
         searchWeather(coordinates);
 
     })
@@ -61,24 +64,12 @@ function searchWeather(x) {
         console.log(response);
 
 
-        // tempConvert(response.current.temp);
-
-        // const tempF = (response.current.temp - 273.15) * 1.80 + 32;
-        // const tempC = (tempF - 32) * (5 / 9);
-
-        // console.log(tempF.toFixed(2));
-        // console.log(tempC.toFixed(2));
-
-        const windMPH = response.current.wind_speed;
-        const windKPH = windMPH * 1.6093427125;
-
-
         currentTemp.text("Temperature: " + tempConvert(response.current.temp).toFixed(2) + " °C");
         currentHumidity.text("Humidity: " + response.current.humidity + "%");
         currentWind.text("Wind Speed: " + WindConvert(response.current.wind_speed).toFixed(2) + " KPH");
         currentUV.text("UV Index: " + response.current.uvi);
 
-        for (i = 1; i < 6; i++) {
+        for (i = 0 + 1; i < 6; i++) {
             let newForecast = $('<div>');
             newForecast.addClass('daily');
             newForecast.attr('id', 'daily-' + i);
@@ -132,17 +123,19 @@ function WindConvert(y) {
     return windKPH;
 }
 
-// // Date and Forecast
-// https:api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&
-//     // exclude={part}&appid={YOUR API KEY}
 
+function searchHistory(x) {
+    let newHistory = $('<div>');
+    newHistory.text(x);
+    searchColumn.append(newHistory);
 
+}
 
+function clearForecast() {
+    forecastDiv.empty();
+    const header = $('<h2>');
+    header.text('5 Day Forecast');
+    header.attr('id', 'forecastHeader');
+    forecastDiv.append(header);
 
-
-// const humidity = response.main.humidity;
-// const windSpeed = response.wind.speed;
-// const UV = //need to use One Call API from Open Weather Map API
-
-
-//     currentTemp.text();
+}
