@@ -83,7 +83,6 @@ function searchWeather(x) {
             newForecast.addClass('daily');
             newForecast.attr('id', 'daily-' + i);
 
-            let newForecastDiv = $('<div>');
             let forecastDate = $('<p>');
             let forecastPic = $('<div>')
             let forecastTemp = $('<p>');
@@ -97,29 +96,19 @@ function searchWeather(x) {
             forecastDate.text(di.toString().slice(3, 15));
 
 
-            const tempForecastF = (response.daily[i].temp.day - 273.15) * 1.80 + 32;
-            const tempForecastC = (tempForecastF - 32) * (5 / 9);
+            forecastTemp.text('Temp: ' + tempConvert(response.daily[i].temp.day).toFixed(2) + '°C');
+            console.log(tempConvert(response.daily[i].temp.day).toFixed(2) + "°C");
 
-            console.log(tempForecastF.toFixed(2));
-            console.log(tempForecastC.toFixed(2));
 
-            const windMPH = response.current.wind_speed;
-            const windKPH = windMPH * 1.6093427125;
+            forecastHumidity.text('Humidity: ' + response.daily[i].humidity + "%");
+            console.log('Humidity:' + response.daily[i].humidity + "%");
 
 
 
-            forecastTemp.text('Temp: ')
-
-
-
-
-
-
-
-            newForecastDiv.push(forecastDate);
-            newForecastDiv.append(forecastPic);
-            newForecastDiv.append(forecastTemp);
-            newForecastDiv.append(forecastHumidity);
+            newForecast.append(forecastDate);
+            newForecast.append(forecastPic);
+            newForecast.append(forecastTemp);
+            newForecast.append(forecastHumidity);
 
 
             forecastDiv.append(newForecast);
@@ -133,9 +122,6 @@ function searchWeather(x) {
 function tempConvert(x) {
     const tempF = (x - 273.15) * 1.80 + 32;
     const tempC = (tempF - 32) * (5 / 9);
-
-    console.log(tempF.toFixed(2));
-    console.log(tempC.toFixed(2));
 
     return tempC;
 }
