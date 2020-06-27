@@ -5,6 +5,7 @@ const currentTemp = $("#currentTemp");
 const currentHumidity = $("#currentHumidity");
 const currentWind = $("#currentWind");
 const currentUV = $("#currentUV");
+const forecastDiv = $('.forecast');
 
 let coordinates = "";
 
@@ -75,7 +76,13 @@ function searchWeather(x) {
         currentWind.text("Wind Speed: " + windKPH.toFixed(2) + " KPH");
         currentUV.text("UV Index: " + response.current.uvi);
 
+        for (i = 1; i < 6; i++) {
+            let newForecast = $('<span>');
+            newForecast.addClass('daily');
+            newForecast.attr('id', 'daily-' + i);
+            forecastDiv.append(newForecast);
 
+        }
 
     })
 }
