@@ -61,23 +61,25 @@ function searchWeather(x) {
         console.log(response);
 
 
-        const tempF = (response.current.temp - 273.15) * 1.80 + 32;
-        const tempC = (tempF - 32) * (5 / 9);
+        // tempConvert(response.current.temp);
 
-        console.log(tempF.toFixed(2));
-        console.log(tempC.toFixed(2));
+        // const tempF = (response.current.temp - 273.15) * 1.80 + 32;
+        // const tempC = (tempF - 32) * (5 / 9);
+
+        // console.log(tempF.toFixed(2));
+        // console.log(tempC.toFixed(2));
 
         const windMPH = response.current.wind_speed;
         const windKPH = windMPH * 1.6093427125;
 
 
-        currentTemp.text("Temperature: " + tempC.toFixed(2) + " °C");
+        currentTemp.text("Temperature: " + tempConvert(response.current.temp).toFixed(2) + " °C");
         currentHumidity.text("Humidity: " + response.current.humidity + "%");
         currentWind.text("Wind Speed: " + windKPH.toFixed(2) + " KPH");
         currentUV.text("UV Index: " + response.current.uvi);
 
         for (i = 1; i < 6; i++) {
-            let newForecast = $('<span>');
+            let newForecast = $('<div>');
             newForecast.addClass('daily');
             newForecast.attr('id', 'daily-' + i);
 
@@ -87,10 +89,34 @@ function searchWeather(x) {
             let forecastTemp = $('<p>');
             let forecastHumidity = $('<p>');
 
+            let UTCi = response.daily[i].dt;
+            let di = new Date(0);
+            di.setUTCSeconds(UTCi);
+            console.log(di);
+
+            forecastDate.text(di.toString().slice(3, 15));
+
+
+            const tempForecastF = (response.daily[i].temp.day - 273.15) * 1.80 + 32;
+            const tempForecastC = (tempForecastF - 32) * (5 / 9);
+
+            console.log(tempForecastF.toFixed(2));
+            console.log(tempForecastC.toFixed(2));
+
+            const windMPH = response.current.wind_speed;
+            const windKPH = windMPH * 1.6093427125;
 
 
 
-            newForecastDiv.append(forecastDate);
+            forecastTemp.text('Temp: ')
+
+
+
+
+
+
+
+            newForecastDiv.push(forecastDate);
             newForecastDiv.append(forecastPic);
             newForecastDiv.append(forecastTemp);
             newForecastDiv.append(forecastHumidity);
@@ -102,6 +128,20 @@ function searchWeather(x) {
 
     })
 }
+
+
+function tempConvert(x) {
+    const tempF = (x - 273.15) * 1.80 + 32;
+    const tempC = (tempF - 32) * (5 / 9);
+
+    console.log(tempF.toFixed(2));
+    console.log(tempC.toFixed(2));
+
+    return tempC;
+}
+
+
+
 // // Date and Forecast
 // https:api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&
 //     // exclude={part}&appid={YOUR API KEY}
