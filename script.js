@@ -75,7 +75,7 @@ function searchWeather(x) {
 
         currentTemp.text("Temperature: " + tempConvert(response.current.temp).toFixed(2) + " °C");
         currentHumidity.text("Humidity: " + response.current.humidity + "%");
-        currentWind.text("Wind Speed: " + windKPH.toFixed(2) + " KPH");
+        currentWind.text("Wind Speed: " + WindConvert(response.current.wind_speed).toFixed(2) + " KPH");
         currentUV.text("UV Index: " + response.current.uvi);
 
         for (i = 1; i < 6; i++) {
@@ -140,7 +140,11 @@ function tempConvert(x) {
     return tempC;
 }
 
-
+function WindConvert(y) {
+    const windMPH = y;
+    const windKPH = windMPH * 1.6093427125;
+    return windKPH;
+}
 
 // // Date and Forecast
 // https:api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&
