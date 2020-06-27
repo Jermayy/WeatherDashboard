@@ -60,6 +60,23 @@ function searchWeather(x) {
         console.log(response);
 
 
+        const tempF = (response.current.temp - 273.15) * 1.80 + 32;
+        const tempC = (tempF - 32) * (5 / 9);
+
+        console.log(tempF.toFixed(2));
+        console.log(tempC.toFixed(2));
+
+        const windMPH = response.current.wind_speed;
+        const windKPH = windMPH * 1.6093427125;
+
+
+        currentTemp.text("Temperature: " + tempC.toFixed(2) + " °C");
+        currentHumidity.text("Humidity: " + response.current.humidity + "%");
+        currentWind.text("Wind Speed: " + windKPH.toFixed(2) + " KPH");
+        currentUV.text("UV Index: " + response.current.uvi);
+
+
+
     })
 }
 // // Date and Forecast
@@ -69,15 +86,10 @@ function searchWeather(x) {
 
 
 
-// const tempF = (response.main.temp - 273.15) * 1.80 + 32;
-// const tempC = (tempF - 32) * (5 / 9);
-
-// console.log(tempF.toFixed(2));
-// console.log(tempC.toFixed(2));
 
 // const humidity = response.main.humidity;
 // const windSpeed = response.wind.speed;
 // const UV = //need to use One Call API from Open Weather Map API
 
 
-//     currentTemp.text("Temperature: " + tempC.toFixed(2) + " °C");
+//     currentTemp.text();
