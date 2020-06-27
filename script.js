@@ -80,6 +80,22 @@ function searchWeather(x) {
             let newForecast = $('<span>');
             newForecast.addClass('daily');
             newForecast.attr('id', 'daily-' + i);
+
+            let newForecastDiv = $('<div>');
+            let forecastDate = $('<p>');
+            let forecastPic = $('<div>')
+            let forecastTemp = $('<p>');
+            let forecastHumidity = $('<p>');
+
+
+
+
+            newForecastDiv.append(forecastDate);
+            newForecastDiv.append(forecastPic);
+            newForecastDiv.append(forecastTemp);
+            newForecastDiv.append(forecastHumidity);
+
+
             forecastDiv.append(newForecast);
 
         }
