@@ -78,6 +78,10 @@ function searchWeather(x) {
             let forecastPic = $('<div>')
             let forecastTemp = $('<p>');
             let forecastHumidity = $('<p>');
+            forecastDate.addClass('info');
+            forecastPic.addClass('info');
+            forecastTemp.addClass('info');
+            forecastHumidity.addClass('info');
 
             let UTCi = response.daily[i].dt;
             let di = new Date(0);
@@ -137,5 +141,18 @@ function clearForecast() {
     header.text('5 Day Forecast');
     header.attr('id', 'forecastHeader');
     forecastDiv.append(header);
+
+}
+
+function CurrentWeatherIcon(x) {
+    if (x === "clear") {
+        $(this).addClass('clear')
+    } else if (x === "Rain") {
+        $(this).addClass('Rain')
+    } else if (x === "Cloudy") {
+        $(this).addClass('Cloud')
+    }
+
+
 
 }
