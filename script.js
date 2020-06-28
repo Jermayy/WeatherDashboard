@@ -9,7 +9,7 @@ const forecastDiv = $('.forecast');
 const searchColumn = $('.searchColumn');
 
 let coordinates = "";
-let input = searchInput.val().trim();
+let input = "";
 let previousSearch = JSON.parse(localStorage.getItem("previousSearch")) || [];
 
 
@@ -27,6 +27,7 @@ window.onload = function() {
     searchBtn.on('click', function(event) {
         event.preventDefault();
         clearForecast();
+        input = searchInput.val().trim();
         console.log(input);
         searchCityCoordinates(input);
     })
