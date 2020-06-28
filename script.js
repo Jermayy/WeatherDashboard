@@ -9,6 +9,10 @@ const forecastDiv = $('.forecast');
 const searchColumn = $('.searchColumn');
 
 let coordinates = "";
+let previousSearch = JSON.parse(localStorage.getItem("previousSearch")) || [];
+
+
+
 
 searchBtn.on('click', function(event) {
     event.preventDefault();
@@ -46,6 +50,11 @@ function searchCityCoordinates() {
 
         searchHistory(response.name);
         searchWeather(coordinates);
+
+        let lastSearch = response.name;
+
+        localStorage.setItem("previousSearch", JSON.stringify(lastSearch));
+
 
     })
 
