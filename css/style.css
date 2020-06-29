@@ -29,12 +29,10 @@
     
     .searchColumn {
         width: 33%;
-        border: 2px dotted black;
     }
     
     .content {
         width: 67%;
-        border: 2px dotted black;
     }
     
     .currentWeather {
@@ -106,4 +104,8 @@
         text-align: center;
         margin: 0;
         padding: 10px
+    }
+    
+    .history:hover {
+        background-color: #999999;
     }
