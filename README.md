@@ -5,6 +5,8 @@ Full Stack Flex Homework Activity #6
 
 The project involves creating a Weather Dashboard that allows users to search a city's name and the browser will dynamically display a city's current weather as well as temperature and humidity for the following 5 days. This demonstrates our ability to access the OpenWeather Remote API and return information from the AJAX request to the user on the browser.
 
+Link to Deployed Application: https://jermayy.github.io/WeatherDashboard/
+
 
 # Keypoints:
 * Demonstrate requesting information in remote APIs
