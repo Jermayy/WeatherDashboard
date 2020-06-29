@@ -8,6 +8,7 @@ const currentUV = $("#currentUV");
 const forecastDiv = $('.forecast');
 const searchColumn = $('.searchColumn');
 
+
 let coordinates = "";
 let input = "";
 let previousSearch = JSON.parse(localStorage.getItem("previousSearch")) || [];
@@ -19,9 +20,6 @@ window.onload = function() {
     } else {
         searchCityCoordinates(JSON.stringify(previousSearch).trim().slice(1, -1))
     }
-
-
-
 
 
     searchBtn.on('click', function(event) {
@@ -69,6 +67,16 @@ window.onload = function() {
         })
 
     }
+
+    $(document).on('click', '.history', function(event) {
+        event.preventDefault();
+        console.log($(this).text());
+
+
+    })
+
+
+
 
 
     function searchWeather(x) {
@@ -149,6 +157,7 @@ window.onload = function() {
 
     function searchHistory(x) {
         let newHistory = $('<div>');
+        newHistory.addClass('history');
         newHistory.text(x);
         searchColumn.append(newHistory);
 
