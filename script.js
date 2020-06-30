@@ -86,7 +86,7 @@ $(document).on('click', '.history', function(event) {
 function searchWeather(x) {
 
     const apiKey = "724e98b55891110350e3c7d68a2fcece";
-    const queryURL2 = "https:api.openweathermap.org/data/2.5/onecall?" + x + "&appid=" + apiKey;
+    const queryURL2 = "https://api.openweathermap.org/data/2.5/onecall?" + x + "&appid=" + apiKey;
 
     $.ajax({
         url: queryURL2,
